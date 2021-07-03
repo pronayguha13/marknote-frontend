@@ -1,7 +1,11 @@
 import React from "react";
 
 const Login = () => {
-  return <div>Login with google</div>;
+  return (
+    <button
+      onClick={() => (window.location = "http://localhost:1337/connect/google")}
+    ></button>
+  );
 };
 
 export default Login;
