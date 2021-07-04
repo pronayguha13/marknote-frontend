@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
+import { LoginContext } from "../global/LoginContext";
+import { UserContext } from "../global/UserContext";
 
 function GoogleAuthCallback() {
-  const [auth, setAuth] = useState();
-  console.log(
-    "🚀 ~ file: GoogleAuthCallback.jsx ~ line 7 ~ GoogleAuthCallback ~ auth",
-    auth
-  );
   const location = useLocation();
+  const history = useHistory();
+  const { setIsAuthenticated, setAuthToken } = useContext(LoginContext);
+  const { setUser } = useContext(UserContext);
   useEffect(() => {
     if (!location) {
       return;
@@ -17,22 +17,18 @@ function GoogleAuthCallback() {
     axios({
       method: "GET",
       url: `http://localhost:1337/auth/google/callback?${search}`,
-    })
-      .then((res) => res.data)
-      .then(setAuth);
+    }).then((res) => setAuthHandler(res.data));
   }, [location]);
 
-  return (
-    <div>
-      {auth && (
-        <>
-          <div>Jwt: {auth.jwt}</div>
-          <div>User Id: {auth.user.id}</div>
-          <div>Provider: {auth.user.provider}</div>
-        </>
-      )}
-    </div>
-  );
+  const setAuthHandler = (authData) => {
+    window.sessionStorage.setItem("authToken", authData.jwt);
+    setAuthToken(authData.jwt);
+    setIsAuthenticated(true);
+    setUser(authData.user);
+    history.push("/user");
+  };
+
+  return <div></div>;
 }
 
 export default GoogleAuthCallback;

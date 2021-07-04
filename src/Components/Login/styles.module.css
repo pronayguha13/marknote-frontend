@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap");
+
+#loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 93vh;
+}
+
+#loginContainer p {
+  margin-bottom: 1rem;
+  font-size: 32px;
+}
+#loginContainer p span {
+  font-family: "Zen Tokyo Zoo", cursive;
+}
+
+#loginBtn {
+  padding: 0.75rem;
+  background-color: #3f80eb;
+  color: #fff;
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
