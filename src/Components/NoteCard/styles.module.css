@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap");
 #container {
-  width: 19.75rem;
+  width: min(30%, 300px);
   aspect-ratio: 1;
   height: 19.625rem;
   background-color: #aea4a4bf;
@@ -10,6 +10,7 @@
   justify-content: flex-start;
   border-radius: 8px;
   box-shadow: 14px 16px 26px 0px #697070;
+  margin-bottom: 0.75rem;
 }
 
 #container a {

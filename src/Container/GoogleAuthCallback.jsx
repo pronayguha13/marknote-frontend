@@ -26,7 +26,7 @@ function GoogleAuthCallback() {
     setAuthToken(authData.jwt);
     setIsAuthenticated(true);
     setUser(authData.user);
-    history.push("/user");
+    history.push("/dashboard");
   };
 
   return <div></div>;

@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap");
 
 #nav {
-  z-index: 300;
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
