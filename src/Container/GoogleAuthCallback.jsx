@@ -9,6 +9,7 @@ function GoogleAuthCallback() {
   const history = useHistory();
   const { setIsAuthenticated, setAuthToken } = useContext(LoginContext);
   const { setUser } = useContext(UserContext);
+
   useEffect(() => {
     if (!location) {
       return;

@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0px 0px 12px 0px #000;
+  max-height: 4rem;
 }
 
 #nav #companyName {
@@ -13,8 +14,17 @@
   font-family: "Zen Tokyo Zoo", cursive;
 }
 
-#nav #signOutBtn {
+#userSection {
+  display: flex;
+  align-items: center;
+}
+
+#userSection p {
   padding: 0 0.8rem;
+}
+
+#userSection #signOutBtn {
+  padding: 0.5rem 0.8rem;
   background-color: #c82333;
   color: #fff;
   outline: none;
