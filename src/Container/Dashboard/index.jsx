@@ -42,16 +42,32 @@ const DashBoard = () => {
   };
 
   return (
-    <div id={styles.dashboardContainer}>
+    <div
+      id={`${
+        user && user.notes && user.notes.length
+          ? styles.dashboardContainer
+          : styles.emptyContainer
+      }`}
+    >
       {error.status ? <Error error={error} setError={setError} /> : null}
-      <h2 id={styles.header}> Welcome!</h2>
-      <button id={styles.createBtn} onClick={() => createNoteHandler()}>
+      <button
+        id={styles.createBtn}
+        style={
+          user && user.notes && user.notes.length
+            ? null
+            : { alignSelf: "center" }
+        }
+        onClick={() => createNoteHandler()}
+      >
         Create New Note
       </button>
-      <div id={styles.noteSection}>
-        {user.notes &&
-          user.notes.map((note, idx) => <NoteCard key={idx} note={note} />)}
-      </div>
+      {user.notes.length ? (
+        <div id={styles.noteSection}>
+          {user.notes.map((note, idx) => (
+            <NoteCard key={idx} note={note} />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -1,0 +1,38 @@
+#Modal {
+  position: absolute;
+  top: 30%;
+  left: 34%;
+  z-index: 300;
+  padding: 1rem;
+  width: max(32%, 250px);
+  border-radius: 4px;
+  background-color: #d3cdcd;
+}
+
+#Modal p {
+  padding-bottom: 2rem;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.btn {
+  padding: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  /* color: #fff; */
+  box-shadow: 0px 0px 12px 0px #000;
+  float: right;
+  font-size: 1rem;
+}
+
+#confirmBtn {
+  background-color: red;
+  margin-left: 16px;
+  color: #fff;
+}
+
+#cancelBtn {
+  background-color: #f2f2f2;
+  color: #000;
+}

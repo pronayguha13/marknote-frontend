@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 import Error from "../Toast-notification/Error";
+import Modal from "../Modal/index";
 
 const NoteCard = ({ note }) => {
   const [isPublic, setIsPublic] = useState(note.isPublic);
@@ -10,6 +11,8 @@ const NoteCard = ({ note }) => {
     status: false,
     message: "",
   });
+  const [isDelete, setIsDelete] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const deleteHandler = () => {
     const authToken = sessionStorage.getItem("authToken");
@@ -20,7 +23,7 @@ const NoteCard = ({ note }) => {
         },
       })
       .then((res) => {
-        window.location.reload();
+        //success => the modal will be closed
       })
       .catch((err) => {
         setError({
@@ -55,14 +58,21 @@ const NoteCard = ({ note }) => {
       });
   };
 
+  const modalHandler = () => {
+    deleteHandler();
+    setShowModal(false);
+    window.location.reload();
+  };
+
   return (
     <div id={styles.container}>
       {error.status ? <Error error={error} setError={setError} /> : null}
+      {showModal ? <Modal cb={modalHandler} controller={setShowModal} /> : null}
       <Link to={`/note/${note.id}`}>
         <p>{note.title}</p>
       </Link>
       <div id={styles.controller}>
-        <span onClick={() => deleteHandler()} className={styles.btn}>
+        <span onClick={() => setShowModal(true)} className={styles.btn}>
           Delete
         </span>
         <span onClick={() => setVisibilityHandler()} className={styles.btn}>

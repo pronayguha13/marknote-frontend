@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { LoginContext } from "../../global/LoginContext";
 import { UserContext } from "../../global/UserContext";
 import styles from "./styles.module.css";
@@ -8,10 +9,14 @@ const Navbar = () => {
   const { user } = useContext(UserContext);
   return (
     <nav id={styles.nav}>
-      <span id={styles.companyName}>MARKNOTE</span>
+      <Link to="/dashboard">
+        <span id={styles.companyName}>MARKNOTE</span>
+      </Link>
       {isAuthenticated && (
         <div id={styles.userSection}>
-          <p>{user.email}</p>
+          <p>
+            Hello! <span style={{ fontWeight: "600" }}>{user.email}</span>
+          </p>
           <button id={styles.signOutBtn} onClick={() => logOutHandler()}>
             Sign Out
           </button>

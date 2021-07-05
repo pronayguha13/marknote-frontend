@@ -36,12 +36,14 @@ const NoteEditor = () => {
   };
 
   const renameHandler = () => {
+    let { title } = note;
+    title = title.length ? title : "UNTITLED";
     const authToken = sessionStorage.getItem("authToken");
     axios
       .put(
         `http://localhost:1337/notes/${note.id}`,
         {
-          ...note,
+          title,
         },
         {
           headers: {
