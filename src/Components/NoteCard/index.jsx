@@ -11,7 +11,6 @@ const NoteCard = ({ note }) => {
     status: false,
     message: "",
   });
-  const [isDelete, setIsDelete] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const deleteHandler = () => {

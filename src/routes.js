@@ -26,11 +26,7 @@ const Routes = () => {
       <Switch>
         <ProtectedRoute path="/note/:id" component={NoteEditor} />
         <ProtectedRoute path="/dashboard" component={DashBoard} />
-        <Route
-          path="/auth/google/callback/"
-          exact
-          component={GoogleAuthCallback}
-        />
+        <Route path="/auth/google/callback" component={GoogleAuthCallback} />
         <Route path="/" exact component={Login} />
       </Switch>
     </Router>
