@@ -13,12 +13,12 @@ This is client side of the application built using **react.js** and **bytemd**.<
   - Start taking note with the markdown editor and have real time view of your rendered notes.
   - Press `Ctrl+S` on the editor to save the note in secure storage.
 - ## Tools: <br />
-      - React.js
-      - bytemd
-      - axios
-      - react-router-dom
-      - react-toastify
-> ## Setup on your local machine
+        - React.js
+        - bytemd
+        - axios
+        - react-router-dom
+        - react-toastify
+  > ## Setup on your local machine
 
 1. Clone the repository.
 2. cd into the cloned directory.
