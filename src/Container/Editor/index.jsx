@@ -100,6 +100,19 @@ const NoteEditor = () => {
           onChange={(e) => onChangeHandler(e)}
           onBlur={() => renameHandler()}
           placeholder="Enter title..."
+          style={
+            note && note.title && note.title.length
+              ? {
+                  width: `${
+                    note.title.length * 10.4 + 32 > 250
+                      ? 250
+                      : note.title.length * 10.4 + 32 <= 50
+                      ? 80
+                      : note.title.length * 13 + 32
+                  }px`,
+                }
+              : { width: "200px" }
+          }
         />
       </div>
       <Editor

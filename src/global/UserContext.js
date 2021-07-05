@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
           axios
             .get(`http://localhost:1337/notes?author=${res.data.email}`)
             .then((notes) => {
-              setUser({ ...res.data, notes: notes.data });
+              setUser({ ...res.data, notes: notes?.data || [] });
             });
         });
     } else {
