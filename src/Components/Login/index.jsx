@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./styles.module.css";
+import { LoginContext } from "../../global/LoginContext";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  const { isAuthenticated } = useContext(LoginContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  });
   return (
     <section id={styles.loginContainer}>
       <p>

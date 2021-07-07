@@ -15,10 +15,10 @@ import { UserContext } from "./global/UserContext";
 
 const Routes = () => {
   const { validateAndFetch } = useContext(UserContext);
-
+  const authToken = window.sessionStorage.getItem("authToken");
   useEffect(() => {
     validateAndFetch();
-  }, [window.sessionStorage.getItem("authToken")]);
+  }, [authToken, validateAndFetch]);
 
   return (
     <Router>
