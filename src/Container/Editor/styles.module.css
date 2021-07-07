@@ -24,3 +24,14 @@
 #titleInput:focus-within {
   border-bottom: 2px solid #000;
 }
+
+#shareBtn {
+  padding: 8px;
+  cursor: pointer;
+}
+
+#shareBtn:hover {
+  border-radius: 50%;
+  /* background-color: #918b8b8e; */
+  filter: drop-shadow(2px 0 2px rgb(197, 28, 70));
+}

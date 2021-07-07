@@ -18,9 +18,13 @@ export const UserProvider = ({ children }) => {
         })
         .then((res) => {
           axios
-            .get(`http://localhost:1337/notes?author=${res.data.email}`)
+            .get(`http://localhost:1337/notes?author=${res.data.email}`, {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            })
             .then((notes) => {
-              setUser({ ...res.data, notes: notes?.data || [] });
+              setUser({ ...res.data, notes: notes?.data ?? [] }); //assigns empty array if no note comes in the  res
             });
         });
     } else {

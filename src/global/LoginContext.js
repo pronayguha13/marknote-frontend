@@ -2,17 +2,17 @@ import React, { createContext, useEffect, useState } from "react";
 export const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(
-    sessionStorage.getItem("authToken")
+    sessionStorage.getItem("authToken") || null
   );
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   useEffect(() => {
-    const authToken = sessionStorage.getItem("authToken");
     if (authToken) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
-  }, [sessionStorage.getItem("authToken")]);
+  }, [authToken]);
 
   const logOutHandler = () => {
     sessionStorage.removeItem("authToken");

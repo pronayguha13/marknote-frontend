@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import axios from "axios";
 import styles from "./styles.module.css";
 import Error from "../Toast-notification/Error";
@@ -22,12 +23,21 @@ const NoteCard = ({ note }) => {
         },
       })
       .then((res) => {
-        //success => the modal will be closed
+        Swal.fire({
+          icon: "success",
+          title: "Success...",
+          showConfirmButton: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
       })
       .catch((err) => {
-        setError({
-          status: true,
-          message: err.message,
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
         });
       });
   };
@@ -63,15 +73,29 @@ const NoteCard = ({ note }) => {
     window.location.reload();
   };
 
+  const deleteBtnClickHandler = () => {
+    Swal.fire({
+      title: "Do you want to delete?",
+      showConfirmButton: false,
+      showDenyButton: true,
+      showCancelButton: true,
+      denyButtonText: `Delete`,
+    }).then((result) => {
+      if (result.isDenied) {
+        deleteHandler();
+      }
+    });
+  };
+
   return (
     <div id={styles.container}>
       {error.status ? <Error error={error} setError={setError} /> : null}
       {showModal ? <Modal cb={modalHandler} controller={setShowModal} /> : null}
-      <Link to={`/note/${note.id}`}>
+      <Link to={`/note/${note.UUID}`}>
         <p>{note.title}</p>
       </Link>
       <div id={styles.controller}>
-        <span onClick={() => setShowModal(true)} className={styles.btn}>
+        <span onClick={() => deleteBtnClickHandler()} className={styles.btn}>
           Delete
         </span>
         <span onClick={() => setVisibilityHandler()} className={styles.btn}>

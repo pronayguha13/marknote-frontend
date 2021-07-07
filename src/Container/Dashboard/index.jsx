@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import uuid from "react-uuid";
 import { UserContext } from "../../global/UserContext";
 import styles from "./styles.module.css";
 import NoteCard from "../../Components/NoteCard/";
@@ -23,6 +24,7 @@ const DashBoard = () => {
         {
           author: user.email,
           user: user,
+          UUID: uuid(),
         },
         {
           headers: {
@@ -31,7 +33,7 @@ const DashBoard = () => {
         }
       )
       .then((res) => {
-        window.location.replace(`/note/${res.data.id}`);
+        window.location.replace(`/note/${res.data.UUID}`);
       })
       .catch((err) => {
         setError({

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import { ToastContainer, toast } from "react-toastify";
-
-const Success = () => {
+const LoggedOut = () => {
   useEffect(() => {
-    toast.success("🦄 Success", {
+    toast.error(`🚩 You have been logged out`, {
       position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
@@ -27,8 +27,9 @@ const Success = () => {
       pauseOnFocusLoss={false}
       draggable={false}
       pauseOnHover={false}
+      onClose={() => setSuccess(false)}
     />
   );
 };
 
-export default Success;
+export default LoggedOut;

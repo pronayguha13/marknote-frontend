@@ -22,10 +22,17 @@ const NoteEditor = () => {
   }, []);
 
   const fetchData = () => {
-    axios.get(`http://localhost:1337/notes?id=${id}`).then((res) => {
-      setNote(res.data[0]);
-      setValue(res.data[0].content);
-    });
+    const authToken = sessionStorage.getItem("authToken");
+    axios
+      .get(`http://localhost:1337/notes?UUID=${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => {
+        setNote(res.data[0]);
+        setValue(res.data[0].content);
+      });
   };
 
   const onChangeHandler = (e) => {
@@ -69,7 +76,7 @@ const NoteEditor = () => {
 
       axios
         .put(
-          `http://localhost:1337/notes/${id}`,
+          `http://localhost:1337/notes/${note.id}`,
           {
             content: value,
           },
@@ -81,6 +88,9 @@ const NoteEditor = () => {
         )
         .then((res) => {
           setIsSuccess(true);
+          setTimeout(() => {
+            setIsSuccess(false);
+          }, 1001);
         })
         .catch((err) => {
           setError({ status: true, message: err.message });
@@ -90,7 +100,7 @@ const NoteEditor = () => {
 
   return (
     <div onKeyDown={(e) => saveHandler(e)} id={styles.editorContainer}>
-      {isSuccess ? <Success /> : null}
+      {isSuccess ? <Success setSuccess={setIsSuccess} /> : null}
       {error.status ? <Error error={error.message} /> : null}
       <div id={styles.noteInfo}>
         <input
@@ -101,7 +111,7 @@ const NoteEditor = () => {
           onBlur={() => renameHandler()}
           placeholder="Enter title..."
           style={
-            note && note.title && note.title.length
+            note?.title && note.title.length
               ? {
                   width: `${
                     note.title.length * 10.4 + 32 > 250
@@ -113,6 +123,12 @@ const NoteEditor = () => {
                 }
               : { width: "200px" }
           }
+        />
+        <img
+          src="/images/share-button.svg"
+          alt="Share"
+          id={styles.shareBtn}
+          title="Copy shareable link"
         />
       </div>
       <Editor

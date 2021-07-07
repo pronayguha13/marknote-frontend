@@ -24,7 +24,6 @@ function GoogleAuthCallback() {
   const setAuthHandler = (authData) => {
     window.sessionStorage.setItem("authToken", authData.jwt);
     setAuthToken(authData.jwt);
-    setIsAuthenticated(true);
     setUser(authData.user);
     history.push("/dashboard");
   };
