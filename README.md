@@ -12,12 +12,15 @@ This is client side of the application built using **react.js** and **bytemd**.<
   - Cards can be renamed in their individual editor.
   - Start taking note with the markdown editor and have real time view of your rendered notes.
   - Press `Ctrl+S` on the editor to save the note in secure storage.
+  - Ability to share note based on privacy of the note.
+  - Copy the shared note in to your account.
 - ## Tools: <br />
         - React.js
         - bytemd
         - axios
         - react-router-dom
         - react-toastify
+        - sweetalert2
   > ## Setup on your local machine
 
 1. Clone the repository.
