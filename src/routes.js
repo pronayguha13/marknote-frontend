@@ -10,6 +10,7 @@ import DashBoard from "./Container/Dashboard/index";
 import GoogleAuthCallback from "./Container/GoogleAuthCallback";
 import Login from "./Components/Login/index";
 import NoteEditor from "./Container/Editor/index";
+import NoteViewer from "./Components/NoteViewer";
 import { LoginContext } from "./global/LoginContext";
 import { UserContext } from "./global/UserContext";
 
@@ -18,12 +19,13 @@ const Routes = () => {
   const authToken = window.sessionStorage.getItem("authToken");
   useEffect(() => {
     validateAndFetch();
-  }, [authToken, validateAndFetch]);
+  }, [authToken]);
 
   return (
     <Router>
       <Navbar />
       <Switch>
+        <Route path="/view/:uuid" component={NoteViewer} />
         <ProtectedRoute path="/note/:id" component={NoteEditor} />
         <ProtectedRoute path="/dashboard" component={DashBoard} />
         <Route path="/auth/google/callback" component={GoogleAuthCallback} />

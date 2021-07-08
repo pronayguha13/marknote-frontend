@@ -8,6 +8,8 @@ import "bytemd/dist/index.min.css";
 import styles from "./styles.module.css";
 import Success from "../../Components/Toast-notification/Success";
 import Error from "../../Components/Toast-notification/Error";
+import Swal from "sweetalert2";
+
 const plugins = [gfm(), highlight()];
 
 const NoteEditor = () => {
@@ -98,6 +100,32 @@ const NoteEditor = () => {
     }
   };
 
+  const shareLinkHandler = () => {
+    if (note.isPublic) {
+      const copyTxt = document.createElement("input");
+      copyTxt.value = `${window.location.origin}/view/${id}`;
+      document.body.parentNode.appendChild(copyTxt);
+      copyTxt.select();
+      document.execCommand("copy");
+      document.body.parentNode.removeChild(copyTxt);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Link successfully copied to clipboard",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Private notes cannot be shared",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <div onKeyDown={(e) => saveHandler(e)} id={styles.editorContainer}>
       {isSuccess ? <Success setSuccess={setIsSuccess} /> : null}
@@ -129,6 +157,7 @@ const NoteEditor = () => {
           alt="Share"
           id={styles.shareBtn}
           title="Copy shareable link"
+          onClick={() => shareLinkHandler()}
         />
       </div>
       <Editor
